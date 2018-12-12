@@ -1,0 +1,20 @@
+---
+- name: Converge
+  hosts: all
+
+  pre_tasks:
+  - name: add user group
+    user:
+      name: '{{ installation_os_group }}'
+      state: present
+  - name: add user
+    user:
+      name: '{{ installation_os_user }}'
+      group: '{{ installation_os_group }}'
+  - name: creaate extension directory
+    file:
+      path: /usr/lib/scratch2/scratch_extensions
+      state: directory
+
+  roles:
+    - role: bassinator.scratch_mqtt

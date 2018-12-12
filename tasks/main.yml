@@ -1,0 +1,14 @@
+---
+- name: copy extension file
+  copy:
+    src: mqtt_extension_local.js
+    dest: /usr/lib/scratch2/scratch_extensions
+    mode: 0644
+
+
+- name: add extension to scratch config
+  lineinfile:
+    path: "/usr/lib/scratch2/scratch_extensions/extensions.json"
+    create: true
+    insertafter: '^[[]'
+    line: '{ "name":"MQTT", "type":"extension", "file":"mqtt_extension_local.js", "md5":"mry.png", "url":"https://github.com/Bassinator/scratch-mqtt-extension", "tags":["network"]  },'
