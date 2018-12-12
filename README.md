@@ -6,7 +6,7 @@ Install the scratch mqtt networking extension. https://github.com/Bassinator/scr
 
 ## Requirements
 
-  None.
+  You need a running web server to serve the extension dependencies
 
 ## Role Variables
 
@@ -17,12 +17,9 @@ Available variables are listed below, along with default values:
 
 ## Dependencies
 
-
-  - bassinator.simplehttp
-
+  None.
 
 ## Example Playbook
-
 
     - hosts: raspberries
       roles:

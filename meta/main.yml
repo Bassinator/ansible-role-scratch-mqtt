@@ -16,9 +16,4 @@ galaxy_info:
   galaxy_tags: [nodered]
 
 
-dependencies:
-  - role: bassinator.simplehttp
-    www_dir: '/home/{{ installation_os_user }}/www/'
-    www_files:
-      - mqttws31.js
-      - jquery.min.js
+dependencies: []
