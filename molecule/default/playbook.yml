@@ -17,4 +17,7 @@
       state: directory
 
   roles:
+    - role: bassinator.simplehttp
+      www_dir: '/home/{{ installation_os_user }}/www/'
+      www_files: []
     - role: bassinator.scratch_mqtt
