@@ -3,7 +3,7 @@
 
 (function(ext) {
 
-  $.getScript("http://localhost:8000/mqttws31.js", function( data, textStatus, jqxhr ) {
+  $.getScript("http://localhost:8080/mqttws31.js", function( data, textStatus, jqxhr ) {
   console.log( data ); // Data returned
   console.log( textStatus ); // Success
   console.log( jqxhr.status ); // 200
@@ -11,7 +11,7 @@
   });
 
   console.log( "another log" ); // 200
-  $.getScript("http://localhost:8000/jquery.min.js", function(){});
+  $.getScript("http://localhost:8080/jquery.min.js", function(){});
 
   var mqtt;
   var reconnectTimeout = 2000;
