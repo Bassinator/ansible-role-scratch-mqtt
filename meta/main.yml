@@ -1,6 +1,6 @@
 ---
 galaxy_info:
-  role_name: nodered
+  role_name: scratch_mqtt
   author: Bassinator
   description: installs Node-RED service on Linux systems
 
@@ -13,7 +13,7 @@ galaxy_info:
       versions:
         - stretch
 
-  galaxy_tags: [nodered]
+  galaxy_tags: [mqtt, network, scratch2]
 
 
 dependencies: []
