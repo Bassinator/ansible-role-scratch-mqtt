@@ -5,10 +5,15 @@
     dest: /usr/lib/scratch2/scratch_extensions
     mode: 0644
 
+- name: copy extension icon
+  copy:
+    src: mosquitto_mqtt.png
+    dest: /usr/lib/scratch2/scratch_extensions/images
+    mode: 0644
 
 - name: add extension to scratch config
   lineinfile:
     path: "/usr/lib/scratch2/scratch_extensions/extensions.json"
     create: true
     insertafter: '^[[]'
-    line: '{ "name":"MQTT", "type":"extension", "file":"mqtt_extension_local.js", "md5":"mry.png", "url":"https://github.com/Bassinator/scratch-mqtt-extension", "tags":["network"]  },'
+    line: '{ "name":"MQTT", "type":"extension", "file":"mqtt_extension_local.js", "md5":"mosquitto_mqtt.png", "url":"https://github.com/Bassinator/scratch-mqtt-extension", "tags":["network"]  },'
