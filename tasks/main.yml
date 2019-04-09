@@ -16,4 +16,13 @@
     path: "/usr/lib/scratch2/scratch_extensions/extensions.json"
     create: true
     insertafter: '^[[]'
-    line: '{ "name":"MQTT", "type":"extension", "file":"mqtt_extension_local.js", "md5":"mosquitto_mqtt.png", "url":"https://github.com/Bassinator/scratch-mqtt-extension", "tags":["network"]  },'
+    regexp: '^{ "name":"MQTT",'
+    line: >
+      {
+      "name":"MQTT",
+      "type":"extension",
+      "file":"mqtt_extension_local.js",
+      "md5":"mosquitto_mqtt.png",
+      "url":"https://github.com/Bassinator/scratch-mqtt-extension",
+      "tags":["network"]
+      },
