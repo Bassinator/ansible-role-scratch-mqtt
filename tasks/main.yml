@@ -8,7 +8,7 @@
 - name: copy extension icon
   copy:
     src: mosquitto_mqtt.png
-    dest: /usr/lib/scratch2/scratch_extensions/images/
+    dest: /usr/lib/scratch2/scratch_extensions/medialibrarythumbnails/
     mode: 0644
 
 - name: add extension to scratch config
