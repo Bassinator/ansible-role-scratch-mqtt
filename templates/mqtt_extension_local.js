@@ -19,9 +19,9 @@
   var newMessage = false;
 
   host = 'test.mosquitto.org';
-  port = 8081;
+  port = 8080;
   topic = '/scratchExtensionTopic';		// topic to subscribe to
-  useTLS = true;
+  useTLS = false;
   username = null;
   password = null;
   cleansession = true;
@@ -151,10 +151,10 @@
             [' ', 'send message %s', 'send_message', 'message'],
             ['r', 'message', 'get_message'],
             ['b', 'message arrived', 'message_arrived'],
-            [' ', 'secure connection  %m.secureConnection', 'set_TLS', 'true'],
+            [' ', 'secure connection  %m.secureConnection', 'set_TLS', 'false'],
             [' ', 'Host %s', 'set_host', 'test.mosquitto.org'],
             [' ', 'Topic %s', 'set_topic', '/scratchExtensionTopic'],
-            [' ', 'Port %n', 'set_port', 8081],
+            [' ', 'Port %n', 'set_port', 8080],
             [' ', 'connect', 'connect'],
         ],
         menus: {

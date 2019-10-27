@@ -11,6 +11,13 @@
     dest: /usr/lib/scratch2/scratch_extensions/medialibrarythumbnails/
     mode: 0644
 
+- name: copy example Project 
+  copy:
+    src: mosquitto_mqtt.png
+    dest: /home//
+    mode: 0644
+
+
 - name: add extension to scratch config
   lineinfile:
     path: "/usr/lib/scratch2/scratch_extensions/extensions.json"
