@@ -11,7 +11,7 @@
     dest: /usr/lib/scratch2/scratch_extensions/medialibrarythumbnails/
     mode: 0644
 
-- name: copy example Project 
+- name: copy example Project
   copy:
     src: mosquitto_mqtt.png
     dest: /home//
