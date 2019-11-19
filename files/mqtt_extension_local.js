@@ -97,7 +97,7 @@
         return {status: 2, msg: 'Ready'};
     };
 
-    ext.set_url = function(_host) {
+    ext.set_host = function(_host) {
       host = _host;
     };
 
