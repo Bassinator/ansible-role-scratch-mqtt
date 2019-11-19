@@ -1,2 +1,5 @@
 ---
-# defaults file for bassinator.scratch_mqtt
+library_host: localhost
+library_port: 8080
+installation_os_user: vagrant
+installation_os_group: vagrant

@@ -1,9 +1,20 @@
 ---
 - name: copy extension file
-  copy:
+  template:
     src: mqtt_extension_local.js
     dest: /usr/lib/scratch2/scratch_extensions
     mode: 0644
+
+- name: copy needed libraries
+  copy:
+    src: "{{ item }}"
+    dest: "/home/{{ installation_os_user }}/www"
+    mode: 0644
+    owner: "{{ installation_os_user }}"
+    group: "{{ installation_os_group }}"
+  with_items:
+    - jquery.min.js
+    - mqttws31.js
 
 - name: copy extension icon
   copy:
@@ -11,9 +22,25 @@
     dest: /usr/lib/scratch2/medialibrarythumbnails/
     mode: 0644
 
+- name: copy example Project
+  copy:
+    src: mqtt_example.sb2
+    dest: "/home/{{ installation_os_user }}"
+    mode: 0644
+
+
 - name: add extension to scratch config
   lineinfile:
     path: "/usr/lib/scratch2/scratch_extensions/extensions.json"
     create: true
     insertafter: '^[[]'
-    line: '{ "name":"MQTT", "type":"extension", "file":"mqtt_extension_local.js", "md5":"mosquitto_mqtt.png", "url":"https://github.com/Bassinator/scratch-mqtt-extension", "tags":["network"]  },'
+    regexp: '^{ "name":"MQTT",'
+    line: >
+      {
+      "name":"MQTT",
+      "type":"extension",
+      "file":"mqtt_extension_local.js",
+      "md5":"mosquitto_mqtt.png",
+      "url":"https://github.com/Bassinator/scratch-mqtt-extension",
+      "tags":["network"]
+      },

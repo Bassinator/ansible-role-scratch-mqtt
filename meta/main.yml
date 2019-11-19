@@ -2,7 +2,7 @@
 galaxy_info:
   role_name: scratch_mqtt
   author: Bassinator
-  description: installs Node-RED service on Linux systems
+  description: installs a mqtt extension for scratch2
 
   license: GNU GPLv3
 

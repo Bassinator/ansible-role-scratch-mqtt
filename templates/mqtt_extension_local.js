@@ -3,7 +3,7 @@
 
 (function(ext) {
 
-  $.getScript("http://localhost:8080/mqttws31.js", function( data, textStatus, jqxhr ) {
+  $.getScript("http://{{ library_host }}:{{ library_port }}/mqttws31.js", function( data, textStatus, jqxhr ) {
   console.log( data ); // Data returned
   console.log( textStatus ); // Success
   console.log( jqxhr.status ); // 200
@@ -11,17 +11,17 @@
   });
 
   console.log( "another log" ); // 200
-  $.getScript("http://localhost:8080/jquery.min.js", function(){});
+  $.getScript("http://{{ library_host }}:{{ library_port }}/jquery.min.js", function(){});
 
   var mqtt;
   var reconnectTimeout = 2000;
   var messagePayload = '';
-  var messageQueue = [];
+  var newMessage = false;
 
   host = 'test.mosquitto.org';
-  port = 8081;
+  port = 8080;
   topic = '/scratchExtensionTopic';		// topic to subscribe to
-  useTLS = true;
+  useTLS = false;
   username = null;
   password = null;
   cleansession = true;
@@ -69,7 +69,8 @@
 
     function onMessageArrived(message) {
         console.log("message arrived " + message.payloadString);
-        messageQueue.push(message.payloadString);
+        messagePayload = message.payloadString;
+        newMessage = true;
     };
 
     function onConnect() {
@@ -136,8 +137,8 @@
     ext.message_arrived = function() {
        // Reset alarm_went_off if it is true, and return true
        // otherwise, return false
-       if (messageQueue.length > 0) {
-           messagePayload  = messageQueue.shift();
+       if ( newMessage ) {
+           newMessage = false;
            return true;
        }
        return false;
@@ -149,11 +150,11 @@
         blocks: [
             [' ', 'send message %s', 'send_message', 'message'],
             ['r', 'message', 'get_message'],
-            ['h', 'when message arrived', 'message_arrived'],
-            [' ', 'secure connection  %m.secureConnection', 'set_TLS', 'true'],
+            ['b', 'message arrived', 'message_arrived'],
+            [' ', 'secure connection  %m.secureConnection', 'set_TLS', 'false'],
             [' ', 'Host %s', 'set_host', 'test.mosquitto.org'],
             [' ', 'Topic %s', 'set_topic', '/scratchExtensionTopic'],
-            [' ', 'Port %n', 'set_port', 8081],
+            [' ', 'Port %n', 'set_port', 8080],
             [' ', 'connect', 'connect'],
         ],
         menus: {
