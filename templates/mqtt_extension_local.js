@@ -10,7 +10,6 @@
   console.log( "Load was performed." );
   });
 
-  console.log( "another log" ); // 200
   $.getScript("http://{{ library_host }}:{{ library_port }}/jquery.min.js", function(){});
 
   var mqtt;
@@ -19,14 +18,13 @@
   var newMessage = false;
 
   host = 'test.mosquitto.org';
-  port = 8080;
+  port = 8081;
   topic = '/scratchExtensionTopic';		// topic to subscribe to
-  useTLS = false;
+  useTLS = true;
   username = null;
   password = null;
   cleansession = true;
-
-  console.log("timeout=" + reconnectTimeout);
+  state = {status: 1, msg: 'loaded'};
 
 
   function MQTTconnect() {
@@ -75,27 +73,26 @@
 
     function onConnect() {
         console.log("trying to connect");
+        state = {status: 1, msg: 'connecting ...'};
         $('#status').val('Connected to ' + host + ':' + port + path);
         // Connection succeeded; subscribe to our topic
         mqtt.subscribe(topic, {qos: 0});
         $('#topic').val(topic);
-
+        state = {status: 2, msg: 'conected'};
     };
 
 
     function onConnectionLost(response) {
+        state = {status: 1, msg: 'connecting ...'};
         setTimeout(MQTTconnect, reconnectTimeout);
         $('#status').val("connection lost: " + response.errorMessage + ". Reconnecting");
     };
 
 
-    // Cleanup function when the extension is unloaded
     ext._shutdown = function() {};
 
-    // Status reporting code
-    // Use this to report missing hardware, plugin or unsupported browser
     ext._getStatus = function() {
-        return {status: 2, msg: 'Ready'};
+        return state;
     };
 
     ext.set_host = function(_host) {
@@ -128,15 +125,12 @@
       return messagePayload;
     }
 
-    ext.send_message = function(message) {
-      //console.log("trying to published message");
-      mqtt.send(topic, message);
+    ext.send_message = function(message, _topic) {
+      mqtt.send(_topic, message);
       console.log("message published");
     };
 
     ext.message_arrived = function() {
-       // Reset alarm_went_off if it is true, and return true
-       // otherwise, return false
        if ( newMessage ) {
            newMessage = false;
            return true;
@@ -148,12 +142,13 @@
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
-            [' ', 'send message %s', 'send_message', 'message'],
+            [' ', 'send message %s to topic %s', 'send_message', 'message', 'topic'],
             ['r', 'message', 'get_message'],
+            ['h', 'when message arrived', 'message_arrived'],
             ['b', 'message arrived', 'message_arrived'],
             [' ', 'secure connection  %m.secureConnection', 'set_TLS', 'false'],
             [' ', 'Host %s', 'set_host', 'test.mosquitto.org'],
-            [' ', 'Topic %s', 'set_topic', '/scratchExtensionTopic'],
+            [' ', 'Subscribe to topic %s', 'set_topic', '/scratchExtensionTopic'],
             [' ', 'Port %n', 'set_port', 8080],
             [' ', 'connect', 'connect'],
         ],
@@ -163,5 +158,5 @@
     };
 
     // Register the extension
-    ScratchExtensions.register('Alarm extension', descriptor, ext);
+    ScratchExtensions.register('MQTT Extension', descriptor, ext);
 })({});
