@@ -24,7 +24,7 @@
 
 - name: copy example Projects
   copy:
-    src: 
+    src:
       - mqtt_example.sb2
       - flappyBirds.sb2
     dest: "/home/{{ installation_os_user }}"
