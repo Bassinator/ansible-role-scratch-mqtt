@@ -22,9 +22,11 @@
     dest: /usr/lib/scratch2/medialibrarythumbnails/
     mode: 0644
 
-- name: copy example Project
+- name: copy example Projects
   copy:
-    src: mqtt_example.sb2
+    src: 
+      - mqtt_example.sb2
+      - flappyBirds.sb2
     dest: "/home/{{ installation_os_user }}"
     mode: 0644
 
