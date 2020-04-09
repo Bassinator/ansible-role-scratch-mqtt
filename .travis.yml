@@ -6,7 +6,7 @@ env:
   global:
     - ROLE_NAME: scratch_mqtt
   matrix:
-    - MOLECULE_DISTRO: debian8
+    - MOLECULE_DISTRO: debian9
 
 install:
   # Install test dependencies.
