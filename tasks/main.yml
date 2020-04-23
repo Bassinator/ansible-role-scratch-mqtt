@@ -24,9 +24,12 @@
 
 - name: copy example Projects
   copy:
-    src: flappyBirds.sb2
+    src: "{{ item }}"
     dest: "/home/{{ installation_os_user }}"
     mode: 0644
+  with_items:
+    - mqtt_example.sb2
+    - flappyBirds.sb2
 
 
 - name: add extension to scratch config
