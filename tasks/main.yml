@@ -26,6 +26,8 @@
   copy:
     src: "{{ item }}"
     dest: "/home/{{ installation_os_user }}"
+    owner: "{{ installation_os_user }}"
+    group: "{{ installation_os_group }}"
     mode: 0644
   with_items:
     - mqtt_example.sb2
