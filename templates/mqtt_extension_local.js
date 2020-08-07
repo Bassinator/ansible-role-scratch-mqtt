@@ -144,7 +144,6 @@
         blocks: [
             [' ', 'send message %s to topic %s', 'send_message', 'message', '/scratchExtensionTopic'],
             ['r', 'message', 'get_message'],
-            ['h', 'when message arrived', 'when message_arrived'],
             ['b', 'message arrived', 'message_arrived'],
             [' ', 'secure connection  %m.secureConnection', 'set_TLS', 'true'],
             [' ', 'Host %s', 'set_host', 'test.mosquitto.org'],
