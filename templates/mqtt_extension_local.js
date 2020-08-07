@@ -142,14 +142,14 @@
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
-            [' ', 'send message %s to topic %s', 'send_message', 'message', 'topic'],
+            [' ', 'send message %s to topic %s', 'send_message', 'message', '/scratchExtensionTopic'],
             ['r', 'message', 'get_message'],
             ['h', 'when message arrived', 'when message_arrived'],
             ['b', 'message arrived', 'message_arrived'],
-            [' ', 'secure connection  %m.secureConnection', 'set_TLS', 'false'],
+            [' ', 'secure connection  %m.secureConnection', 'set_TLS', 'true'],
             [' ', 'Host %s', 'set_host', 'test.mosquitto.org'],
             [' ', 'Subscribe to topic %s', 'set_topic', '/scratchExtensionTopic'],
-            [' ', 'Port %n', 'set_port', 8080],
+            [' ', 'Port %n', 'set_port', 8081],
             [' ', 'connect', 'connect'],
         ],
         menus: {
