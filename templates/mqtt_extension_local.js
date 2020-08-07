@@ -1,5 +1,5 @@
-/* Extension demonstrating a hat block */
-/* Sayamindu Dasgupta <sayamindu@media.mit.edu>, May 2014 */
+/* Extension to enable mqtt communication */
+/* Bastian Bukatz <bastian.greuel@gmail.com>, Aug 2020 */
 
 (function(ext) {
 
