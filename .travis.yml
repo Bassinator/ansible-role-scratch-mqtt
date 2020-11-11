@@ -10,7 +10,7 @@ env:
 
 install:
   # Install test dependencies.
-  - pip install molecule yamllint ansible-lint flake8 testinfra docker
+  - pip install molecule yamllint ansible-lint flake8 testinfra docker molecule-docker
 
 before_script:
   # Use actual Ansible Galaxy role name for the project directory.
